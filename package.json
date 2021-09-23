@@ -1,5 +1,5 @@
 {
-  "name": "scratchemu",
+  "name": "@bnnk/scratchemu",
   "version": "1.0.0",
   "description": "A QEMU for scratch.",
   "main": "index.cjs",
@@ -12,8 +12,11 @@
   },
   "type": "module",
   "dependencies": {
+    "@babel/cli": "^7.15.7",
+    "@babel/preset-env": "^7.15.6",
     "bluebird": "^3.7.2",
     "dialog-node": "^0.2.1",
+    "esm": "^3.2.25",
     "extract-zip": "^2.0.1",
     "filenamify": "^5.0.1",
     "filenamify-url": "^3.0.0",
@@ -23,5 +26,8 @@
   "devDependencies": {
     "electron": "^15.0.0",
     "electron-builder": "^22.11.7"
+  },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/@bnnk"
   }
 }

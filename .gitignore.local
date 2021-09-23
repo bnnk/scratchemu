@@ -1,4 +1,4 @@
 # gitignoreio --topics .gitignoreio
 dist/*
 .gitignore
-!C:\
+*.png

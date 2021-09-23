@@ -7,7 +7,7 @@
 # gitignoreio --topics .gitignoreio
 dist/*
 .gitignore
-!C:\
+*.png
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/node

@@ -4,12 +4,13 @@ var optparse = require("nomnom").option("srom", {
     metavar: "romfile",
     required: true
 }).parse()
-const {app, BrowserWindow} = require('electron')
+const {app, BrowserWindow, Menu, MenuItem, ipcMain} = require('electron')
 const path = require('path')
 const {loadAsync} = require("./core.cjs")
 const extract = require('extract-zip')
 const dialog = require("dialog-node")
 const { existsSync } = require("fs")
+// Set options as a parameter, environment variable, or rc file.
 
 function createWindow () {
   // Create the browser window.
@@ -27,11 +28,19 @@ function createWindow () {
             width: 1280,
             height: 800,
             webPreferences: {
-                preload: path.join(__dirname, "preload.js")
+                preload: path.join(__dirname, "preloaderscratch.cjs"),
+                contextIsolation: false
             },
             title
         })
-        mainWindow.setMenuBarVisibility(false)
+        var meno = new Menu()
+        meno.append(new MenuItem({
+          label: "Take Screenshot",
+          click(){
+            console.log(ipcRenderer.emit("scrshot", []))
+          }
+        }))
+        mainWindow.setMenu(meno)
         dialog.info(lines, "About ROM", 0, 
             function(code, retVal, stderr){});
         mainWindow.loadURL(`file://${path.join(temp, 'index.html')}`)
@@ -41,11 +50,11 @@ function createWindow () {
         if(existsSync(path.join(temp, 'icon.png'))){
             mainWindow.setIcon(path.join(temp, 'icon.png'))
         }
+        mainWindow.webContents.openDevTools()
     })
   })
 
   // Open the DevTools.
-  // mainWindow.webContents.openDevTools()
 }
 
 // This method will be called when Electron has finished
