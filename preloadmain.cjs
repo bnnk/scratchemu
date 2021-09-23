@@ -1,6 +1,5 @@
 const dialog = require("dialog-node");
 const path = require("path")
-const { ipcRenderer } = require("electron")
 const fs = require("fs")
 function fileSave(blob, xpath){
     var fileReader = new FileReader();
@@ -66,5 +65,3 @@ function onScreenshot(e){
     })
 }
 module.exports = onScreenshot
-window.ipcRenderer = ipcRenderer
-ipcRenderer.on("scrshot", onScreenshot)

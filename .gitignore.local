@@ -2,3 +2,5 @@
 dist/*
 .gitignore
 *.png
+!shots/*.png
+package-lock.json

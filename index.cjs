@@ -4,7 +4,7 @@ var optparse = require("nomnom").option("srom", {
     metavar: "romfile",
     required: true
 }).parse()
-const {app, BrowserWindow, Menu, MenuItem, ipcMain} = require('electron')
+const {app, BrowserWindow, Menu, MenuItem} = require('electron')
 const path = require('path')
 const {loadAsync} = require("./core.cjs")
 const extract = require('extract-zip')
@@ -37,7 +37,7 @@ function createWindow () {
         meno.append(new MenuItem({
           label: "Take Screenshot",
           click(){
-            console.log(ipcRenderer.emit("scrshot", []))
+            mainWindow.webContents.mainFrame.executeJavaScript("preload()")
           }
         }))
         mainWindow.setMenu(meno)
@@ -50,7 +50,7 @@ function createWindow () {
         if(existsSync(path.join(temp, 'icon.png'))){
             mainWindow.setIcon(path.join(temp, 'icon.png'))
         }
-        mainWindow.webContents.openDevTools()
+        
     })
   })
 

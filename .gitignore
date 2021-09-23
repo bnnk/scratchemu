@@ -8,6 +8,8 @@
 dist/*
 .gitignore
 *.png
+!shots/*.png
+package-lock.json
 
 
 # Created by https://www.toptal.com/developers/gitignore/api/node
